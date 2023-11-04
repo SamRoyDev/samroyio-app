@@ -39,7 +39,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref SamRoyIoApi
-            Path: /store-visitor
+            Path: /post-visitor
             Method: post
 
   VisitorCountTable:
