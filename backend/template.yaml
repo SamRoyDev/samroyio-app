@@ -2,6 +2,15 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Resources:
+  HelloWorldApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -12,6 +21,6 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
+            RestApiId: !Ref HelloWorldApi
             Path: /hello
             Method: get
-            Cors: "'*'"
