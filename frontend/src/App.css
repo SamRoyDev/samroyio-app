@@ -1,38 +1,127 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #1c1c1e;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+}
+
+.App-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: 0;
+}
+
+.App-nav ul li {
+  margin-right: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.intro {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 2rem 0;
+}
+
+.intro h1 {
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.intro .title {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: #e62429; /* red color */
+  color: white;
+  border: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #e62429; /* red color */
+  color: #e62429; /* red color */
+}
+
+.about {
+  padding: 2rem;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.about p {
+  color: #666;
+}
+
+.skills {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.skill {
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.skill label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.skill progress {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+skill progress::-webkit-progress-bar {
+  background-color: #ddd;
+}
+
+skill progress::-webkit-progress-value {
+  background-color: #e62429;
+}
+
+skill progress::-moz-progress-bar {
+  background-color: #e62429;
 }

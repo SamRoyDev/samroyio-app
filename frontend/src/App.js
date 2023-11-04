@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import ResumeSection from "./ResumeSection";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -39,23 +40,25 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Visitors: {count || "Loading count..."}</p>
-        <p>API Response: {message || "Loading..."}</p>
-        <footer className="App-footer"></footer>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <header className="App-header">
+      <nav className="App-nav">
+        <div className="brand"><p>samroy.io</p></div>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Resume</li>
+          <li>Services</li>
+          <li>Portfolio</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+      <p>Visitors: {count || "Loading Visitor Count..."}</p>
+      <p>Backend API: {message || "Loading API Response..."}</p>
+    </header>
+    <main className="App-main">
+      < ResumeSection />
+    </main>
+  </div>
   );
 }
 

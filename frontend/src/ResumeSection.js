@@ -2,20 +2,27 @@
 function ResumeSection() {
   return (
     <>
-      <h1>Sam Roy</h1>
-      <h2>Head of Technology</h2>
-      <section className="Resume-section">
-        <h3>Experience</h3>
-        <p>Position at Company</p>
-        <p>More details about experience, projects, etc.</p>
+    <section className="intro">
+        <h1>Hi, I'm <span className="name">Sam Roy</span></h1>
+        <p className="title">Head of Technology</p>
+        <div className="buttons">
+          <button className="btn">Download Resume</button>
+          <button className="btn btn-outline">View Portfolio</button>
+        </div>
       </section>
-      <section className="Resume-section">
-        <h3>Education</h3>
-        <p>BS in Computer Science from State University</p>
-      </section>
-      <section className="Resume-section">
-        <h3>Skills</h3>
-        <p>JavaScript, React, Node.js, etc.</p>
+      <section className="about">
+        <h2>About</h2>
+        <p>...</p>
+        <div className="skills">
+          <div className="skill">
+            <label>SW Development</label>
+            <progress value="80" max="100"></progress>
+          </div>
+          <div className="skill">
+            <label>IT Management</label>
+            <progress value="100" max="100"></progress>
+          </div>
+        </div>
       </section>
     </>
   );
