@@ -25,7 +25,7 @@ Resources:
             Path: /hello
             Method: get
 
-    StoreVisitorFunction:
+  StoreVisitorFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/store_visitor/
