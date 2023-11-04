@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main # Set this to your default branch
-    paths:
-      - '/frontend/**' # this needs to be fixed
-      - ".github/workflows/deploy-frontend.yml"
+    # paths:
+    #   - '/frontend/**' # this needs to be fixed
+    #   - ".github/workflows/deploy-frontend.yml"
 
 jobs:
   build-and-deploy:
