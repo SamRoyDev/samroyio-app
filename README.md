@@ -2,6 +2,21 @@
 
 This is a simple React application initialized with `create-react-app` and configured for deployment to AWS S3 using GitHub Actions.
 
+samroyio-app/
+│
+├── README.md
+│
+├── backend/     
+│   ├── src/
+│   │   └── lambda_function.py  
+│   └── requirements.txt    
+│
+└── frontend/
+    ├── public/
+    ├── src/
+    └── ...
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
