@@ -33,16 +33,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Deploy to S3
+      - name: Turn off Block Public Access
         run: |
-          aws s3 sync build/ s3://$AWS_S3_BUCKET --delete
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Configure bucket as a website
-        run: |
-          aws s3 website s3://$AWS_S3_BUCKET --index-document index.html --error-document error.html
+          aws s3api put-public-access-block \
+          --bucket ${{ env.AWS_S3_BUCKET }} \
+          --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -65,6 +60,20 @@ jobs:
           END
           )
           aws s3api put-bucket-policy --bucket $AWS_S3_BUCKET --policy "$BUCKET_POLICY"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Configure bucket as a website
+        run: |
+          aws s3 website s3://$AWS_S3_BUCKET --index-document index.html --error-document error.html
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync build/ s3://$AWS_S3_BUCKET --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
