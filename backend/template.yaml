@@ -5,7 +5,7 @@ Resources:
   SamRoyIoApi:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: Prod
+      StageName: prod
       Cors:
         AllowMethods: "'GET,POST,OPTIONS'"
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
@@ -39,7 +39,24 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref SamRoyIoApi
-            Path: /post-visitor
+            Path: /post_visitor
+            Method: post
+
+  GetVisitorCountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/get_visitor_count/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref VisitorCountTable
+      Events:
+        PostVisitorApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref SamRoyIoApi
+            Path: /get_visitor_count
             Method: post
 
   VisitorCountTable:
