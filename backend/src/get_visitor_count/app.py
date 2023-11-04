@@ -27,7 +27,6 @@ def lambda_handler(event, context):
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
-                # Required for cookies, authorization headers with HTTPS
                 'Access-Control-Allow-Credentials': True
             },
             'body': json.dumps({'count': count})
@@ -36,5 +35,9 @@ def lambda_handler(event, context):
         print(e)
         return {
             'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
+                'Access-Control-Allow-Credentials': True
+            },
             'body': json.dumps('Unable to retrieve count of visitors.')
         }

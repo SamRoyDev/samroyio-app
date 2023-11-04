@@ -36,5 +36,9 @@ def lambda_handler(event, context):
         print(e)
         return {
             'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
+                'Access-Control-Allow-Credentials': True
+            },
             'body': json.dumps('Error saving the visitor.')
         }
