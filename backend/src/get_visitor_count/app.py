@@ -10,8 +10,11 @@ def lambda_handler(event, context):
         # Initialize the count variable
         count = 0
         # Start the scan operation
-        response = table.scan(Select='COUNT')
-        count += response['Count']
+        response = table.scan(
+            Select='COUNT'  # This should return only the count of items
+        )
+        # Safely get the count from the response
+        count += response.get('Count', 0)
 
         # Continue scanning if there are more items
         while 'LastEvaluatedKey' in response:
@@ -19,7 +22,8 @@ def lambda_handler(event, context):
                 Select='COUNT',
                 ExclusiveStartKey=response['LastEvaluatedKey']
             )
-            count += response['Count']
+            # Safely get the count from the response
+            count += response.get('Count', 0)
 
         # Return the count of visitors
         return {
