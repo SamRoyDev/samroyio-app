@@ -2,7 +2,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  HelloWorldApi:
+  SamRoyIoApi:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
@@ -21,9 +21,26 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: !Ref HelloWorldApi
+            RestApiId: !Ref SamRoyIoApi
             Path: /hello
             Method: get
+
+    StoreVisitorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/store_visitor/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref VisitorCountTable
+      Events:
+        StoreVisitorApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref SamRoyIoApi
+            Path: /store-visitor
+            Method: post
 
   VisitorCountTable:
     Type: AWS::DynamoDB::Table
