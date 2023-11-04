@@ -11,13 +11,13 @@ const useVisitorCounter = () => {
 function App() {
   const visitorCount = useVisitorCounter();
 
-  const [message, setMessage] = useState(""); // Correct usage of useState
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     axios
       .get("https://134zz2i5of.execute-api.us-west-1.amazonaws.com/Prod/hello")
       .then((response) => {
-        setMessage(response.data.message); // Assuming your API response has a 'message' field
+        setMessage(response.data.message);
       })
       .catch((error) => {
         console.error("There was an error fetching the data:", error);
