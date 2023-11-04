@@ -25,17 +25,17 @@ Resources:
             Path: /hello
             Method: get
 
-  StoreVisitorFunction:
+  PostVisitorFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/store_visitor/
+      CodeUri: src/post_visitor/
       Handler: app.lambda_handler
       Runtime: python3.8
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref VisitorCountTable
       Events:
-        StoreVisitorApi:
+        PostVisitorApi:
           Type: Api
           Properties:
             RestApiId: !Ref SamRoyIoApi
