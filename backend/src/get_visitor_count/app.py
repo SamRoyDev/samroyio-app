@@ -1,21 +1,19 @@
-# src/store_visitor/app.py
 import json
 import boto3
-from datetime import datetime
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('VisitorCount')
 
-
 def lambda_handler(event, context):
-    # Store the visit in DynamoDB
     try:
-        response = table.scan(
-            Select='COUNT'
-        )
-        count = response['Count']
+        # Initialize the count variable
+        count = 0
+        # Start the scan operation
+        response = table.scan(Select='COUNT')
+        count += response['Count']
 
+        # Continue scanning if there are more items
         while 'LastEvaluatedKey' in response:
             response = table.scan(
                 Select='COUNT',
@@ -23,21 +21,23 @@ def lambda_handler(event, context):
             )
             count += response['Count']
 
+        # Return the count of visitors
         return {
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
-                'Access-Control-Allow-Credentials': True
+                'Access-Control-Allow-Credentials': 'true'  # This should be a string
             },
             'body': json.dumps({'count': count})
         }
     except Exception as e:
         print(e)
+        # Return the error message
         return {
             'statusCode': 500,
             'headers': {
                 'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
-                'Access-Control-Allow-Credentials': True
+                'Access-Control-Allow-Credentials': 'true'  # This should be a string
             },
             'body': json.dumps('Unable to retrieve count of visitors.')
         }
