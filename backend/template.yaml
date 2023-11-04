@@ -57,7 +57,7 @@ Resources:
           Properties:
             RestApiId: !Ref SamRoyIoApi
             Path: /get_visitor_count
-            Method: post
+            Method: get
 
   VisitorCountTable:
     Type: AWS::DynamoDB::Table
