@@ -14,6 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <p>Visitors: {visitorCount}</p>
         <h1>Sam Roy</h1>
         <h2>Head of Technology</h2>
         <section className="Resume-section">
@@ -30,7 +31,6 @@ function App() {
           <p>JavaScript, React, Node.js, etc.</p>
         </section>
         <footer className="App-footer">
-          <p>Visitors: {visitorCount}</p>
         </footer>
         <p>
           Edit <code>src/App.js</code> and save to reload.
