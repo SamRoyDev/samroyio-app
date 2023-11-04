@@ -51,7 +51,9 @@ Resources:
               - Authorization
           LambdaFunctionAssociations: []
         ViewerCertificate:
-          CloudFrontDefaultCertificate: true
+          AcmCertificateArn: arn:aws:acm:us-west-1:917324635987:certificate/31fa960b-cd78-40d9-91e5-22aef82653ea
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2018
 
   HelloWorldFunction:
     Type: AWS::Serverless::Function
