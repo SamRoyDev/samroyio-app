@@ -1,20 +1,30 @@
+# .github/workflows/deploy_backend.yaml
 name: Deploy Backend
 
 on:
   push:
     branches:
-      - main # Set this to your default branch
+      - main
     paths:
-      - "/backend/**"
+      - "backend/**"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Deploy backend
+      - uses: actions/checkout@v2
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Install SAM CLI
         run: |
-          cd backend
-          pip install -r requirements.txt
-          sam build
-          sam deploy --guided
+          pip install aws-sam-cli
+      - name: Build SAM application
+        run: |
+          sam build --template backend/template.yaml
+      - name: Deploy SAM application
+        run: |
+          sam deploy --stack-name my-backend-stack --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --template-file .aws-sam/build/template.yaml
