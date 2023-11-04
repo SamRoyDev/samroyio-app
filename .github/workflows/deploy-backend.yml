@@ -9,8 +9,29 @@ on:
       - ".github/workflows/deploy-backend.yml"
 
 jobs:
-  deploy:
+  # setup-s3-bucket:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     AWS_REGION: "us-west-1" # Set your AWS region here
+  #     AWS_S3_BUCKET: backend.app.samroy.io # Set your S3 bucket name here
+  #   steps:
+  #     - name: Create S3 bucket if it does not exist
+  #       run: |
+  #         if ! aws s3 ls "s3://$AWS_S3_BUCKET" 2>&1 | grep -q 'NoSuchBucket'; then
+  #           echo "Bucket already exists"
+  #         else
+  #           aws s3 mb "s3://$AWS_S3_BUCKET" --region $AWS_REGION
+  #           echo "Bucket created"
+  #         fi
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v2
 
@@ -37,4 +58,4 @@ jobs:
 
       - name: Deploy SAM application
         run: |
-          sam deploy --stack-name my-backend-stack --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --template-file .aws-sam/build/template.yaml
+          sam deploy --resolve-s3 --stack-name my-backend-stack --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --template-file .aws-sam/build/template.yaml
