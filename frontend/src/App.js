@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://7zwpke1hy4.execute-api.us-west-1.amazonaws.com/Prod/hello")
+      .get("https://134zz2i5of.execute-api.us-west-1.amazonaws.com/Prod/hello")
       .then((response) => {
         setMessage(response.data.message); // Assuming your API response has a 'message' field
       })
