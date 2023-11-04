@@ -7,6 +7,7 @@ from datetime import datetime
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('VisitorCount')
 
+
 def lambda_handler(event, context):
     # Store the visit in DynamoDB
     try:
@@ -24,6 +25,11 @@ def lambda_handler(event, context):
 
         return {
             'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
+                # Required for cookies, authorization headers with HTTPS
+                'Access-Control-Allow-Credentials': True
+            },
             'body': json.dumps({'count': count})
         }
     except Exception as e:

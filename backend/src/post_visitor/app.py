@@ -8,6 +8,7 @@ from datetime import datetime
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('VisitorCount')
 
+
 def lambda_handler(event, context):
     # Generate a unique visitor ID
     visitor_id = str(uuid.uuid4())
@@ -24,6 +25,11 @@ def lambda_handler(event, context):
         )
         return {
             'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',  # Required for CORS support to work
+                # Required for cookies, authorization headers with HTTPS
+                'Access-Control-Allow-Credentials': True
+            },
             'body': json.dumps('Visitor recorded successfully.')
         }
     except Exception as e:
