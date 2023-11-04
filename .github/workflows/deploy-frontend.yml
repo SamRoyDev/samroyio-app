@@ -6,6 +6,7 @@ on:
       - main # Set this to your default branch
     paths:
       - '/frontend/**'
+      - ".github/workflows/deploy-frontend.yml"
 
 jobs:
   deploy:
