@@ -17,7 +17,7 @@ function App() {
     axios
       .get("https://134zz2i5of.execute-api.us-west-1.amazonaws.com/Prod/hello")
       .then((response) => {
-        setMessage(response.data.message);
+        setMessage(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data:", error);
