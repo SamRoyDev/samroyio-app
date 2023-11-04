@@ -16,6 +16,9 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
+        Aliases:
+          - backend.app.samroy.io
+          - api.samroy.io
         Origins:
           - Id: SamRoyIoApiOrigin
             DomainName:
