@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: "us-west-1" # Set your AWS region here
-      AWS_S3_BUCKET: test-app.samroy.io # Set your S3 bucket name here
+      AWS_S3_BUCKET: app.samroy.io # Set your S3 bucket name here
 
     steps:
       - uses: actions/checkout@v2
