@@ -11,6 +11,46 @@ Resources:
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
         AllowOrigin: "'*'"
 
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Origins:
+          - Id: SamRoyIoApiOrigin
+            DomainName:
+              Fn::Join:
+                - ""
+                - - Ref: SamRoyIoApi
+                  - ".execute-api."
+                  - Ref: AWS::Region
+                  - ".amazonaws.com"
+            OriginPath: "/prod" # Adjust the stage name if necessary
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: "https-only"
+              OriginSSLProtocols:
+                - TLSv1.2
+        DefaultCacheBehavior:
+          TargetOriginId: SamRoyIoApiOrigin
+          ViewerProtocolPolicy: "redirect-to-https"
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            - PUT
+            - POST
+            - PATCH
+            - DELETE
+          ForwardedValues:
+            QueryString: true
+            Headers:
+              - Authorization
+          LambdaFunctionAssociations: []
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
