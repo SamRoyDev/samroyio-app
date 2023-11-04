@@ -9,17 +9,17 @@ on:
       - ".github/workflows/deploy-frontend.yml"
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     env:
       AWS_REGION: "us-west-1" # Set your AWS region here
       AWS_S3_BUCKET: app.samroy.io # Set your S3 bucket name here
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: cd to frontend
-        run: cd frontend/
 
       - name: Install dependencies
         run: npm install
