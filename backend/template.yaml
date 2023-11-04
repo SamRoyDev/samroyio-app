@@ -51,7 +51,7 @@ Resources:
               - Authorization
           LambdaFunctionAssociations: []
         ViewerCertificate:
-          AcmCertificateArn: arn:aws:acm:us-west-1:917324635987:certificate/31fa960b-cd78-40d9-91e5-22aef82653ea
+          AcmCertificateArn: arn:aws:acm:us-east-1:917324635987:certificate/4bd6ddff-2df5-4794-ab6b-ef36e15a47a0
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2018
 
