@@ -54,8 +54,8 @@ jobs:
 
       - name: Build SAM application
         run: |
-          sam build --template backend/template.yaml
+          sam build --template template.yaml
 
       - name: Deploy SAM application
         run: |
-          sam deploy --resolve-s3 --stack-name my-backend-stack --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --template-file .aws-sam/build/template.yaml
+          sam deploy --resolve-s3 --stack-name samroyio-backend-stack --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --template-file .aws-sam/build/template.yaml
