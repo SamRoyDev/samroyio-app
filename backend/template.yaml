@@ -14,3 +14,4 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+            Cors: "*"
