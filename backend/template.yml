@@ -1,14 +1,16 @@
-AWSTemplateFormatVersion: '2010-09-09'
+# backend/template.yaml
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  MyLambdaFunction:
+  HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/lambda_function.lambda_handler
+      CodeUri: hello_world/
+      Handler: hello_world.handler
       Runtime: python3.8
       Events:
-        MyApi:
+        HelloWorldApi:
           Type: Api
           Properties:
-            Path: /myendpoint
+            Path: /hello
             Method: get
