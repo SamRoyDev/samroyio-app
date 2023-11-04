@@ -24,3 +24,17 @@ Resources:
             RestApiId: !Ref HelloWorldApi
             Path: /hello
             Method: get
+
+  VisitorCountTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: VisitorCount
+      AttributeDefinitions:
+        - AttributeName: VisitorId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: VisitorId
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
