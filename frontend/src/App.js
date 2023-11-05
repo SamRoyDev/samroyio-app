@@ -9,13 +9,6 @@ function App() {
   const [message, setMessage] = useState("");
   const [count, setCount] = useState("");
 
-  // Effect for posting visitor count - runs only once on mount
-  useEffect(() => {
-    axios.post("https://backend.app.samroy.io/post_visitor").catch((error) => {
-      console.error("There was an error posting to visitor count api:", error);
-    });
-  }, []); // Empty dependency array means this effect runs once on component mount
-
   // Effect for getting a welcome message - runs only once on mount
   useEffect(() => {
     axios
@@ -40,6 +33,13 @@ function App() {
       });
   }, []); // Empty dependency array means this effect runs once on component mount
 
+  // Effect for posting visitor count - runs only once on mount
+  useEffect(() => {
+    axios.post("https://backend.app.samroy.io/post_visitor").catch((error) => {
+      console.error("There was an error posting to visitor count api:", error);
+    });
+  }, []); // Empty dependency array means this effect runs once on component mount
+
   return (
     <div className="App">
       <header className="App-header">
@@ -51,7 +51,7 @@ function App() {
       <p>Visitors: {count || "Loading Visitor Count..."}</p>
       <p>Backend API: {message || "Loading API Response..."}</p>
       <main className="App-main">
-        < GithubRepositories />
+        <GithubRepositories />
         {/* <ResumeSection /> */}
       </main>
     </div>
