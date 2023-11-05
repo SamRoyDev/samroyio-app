@@ -1,60 +1,14 @@
-/* Base solarized colors */
-:root {
-  --base04: #041c21;
-  --base02: #014354; /* background */
-  --base03: #005c72; /* background highlights */
-  --base01: #dce5e8; /* comments / secondary content */
-  --base00: #e2e6e8; /* body text default */
-  --base0: #eaf2f3; /* body text in light themes / variable in dark themes */
-  --base1: #93a1a1; /* comments / secondary content in light themes */
-  --base2: #eee8d5; /* background in light themes */
-  --base3: #eeebe1; /* background highlights in light themes */
-  --yellow: #b58900;
-  --orange: #cb4b16;
-  --red: #dc322f;
-  --magenta: #d33682;
-  --violet: #6c71c4;
-  --blue: #268bd2;
-  --cyan: #2aa198;
-  --green: #859900;
-  --text: var(--base0); /* Lighter text color for higher contrast */
-  --background: var(
-    --base04
-  ); /* Ensure this is the color for the overall background */
-  --link-color: #268bd2; /* Solarized blue for links */
-  --visited-link-color: #6c71c4; /* Solarized violet for visited links */
-}
-
-body,
-.App,
-.App-header,
-.repo-name,
-.repo-description,
-.repo-info {
-  color: var(--text); /* Update text color */
-}
-
-body {
-  background-color: var(
-    --background
-  ); /* This will set the background for the full page */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-}
-
-/* General App Styling */
 .App {
   font-family: "Arial", sans-serif;
-  color: var(--base0);
+  color: #333;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 10px; /* Add padding for smaller screens */
-  background-color: var(--base03);
 }
 
 .App-header {
-  background-color: var(--base02);
-  color: var(--base2);
+  background-color: #1c1c1e;
+  color: white;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -62,10 +16,9 @@ body {
   flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
 }
 
-/* Navigation Styles */
 .App-nav ul {
   list-style: none;
-  background-color: var(--blue);
+  background-color: rgba(36, 36, 188, 0.563);
   padding: 0;
   display: flex;
   margin: 0;
@@ -74,37 +27,51 @@ body {
 
 .App-nav ul li {
   margin-right: 1rem;
-  color: var(--base3);
+  color: #fff;
   cursor: pointer;
 }
 
-/* Branding Styles */
+/* Stacking nav items vertically on smaller screens */
+@media (max-width: 768px) {
+  .App-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .App-nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
 .brand {
   font-weight: bold;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--base00);
 }
 
-/* Intro Section Styles */
 .intro {
   text-align: center;
-  background-color: var(--base02);
+  background-color: #f8f8f8;
   padding: 2rem 0;
 }
 
 .intro h1 {
   margin: 0.5rem 0;
   font-size: 2.5rem;
-  color: var(--base1);
+}
+
+/* Adjusting heading size on smaller screens */
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2rem;
+  }
 }
 
 .intro .title {
-  color: var(--base00);
+  color: #666;
   margin-bottom: 2rem;
 }
 
-/* Button Styles */
 .buttons {
   display: flex;
   justify-content: center;
@@ -119,8 +86,13 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: var(--base3);
-  border: 1px solid var(--base1); /* Adding border to make it visible against the background */
+}
+
+/* Adjust button size on smaller screens */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.8rem 1.5rem;
+  }
 }
 
 .btn:hover {
@@ -128,28 +100,30 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--red);
-  color: var(--base3);
+  background-color: #e62429;
+  color: white;
+  border: none;
 }
 
 .btn-outline {
   background-color: transparent;
-  border: 2px solid var(--red);
-  color: var(--red);
+  border: 2px solid #e62429;
+  color: #e62429;
 }
 
-/* About Section Styles */
 .about {
   padding: 2rem;
-  color: var(--base0);
 }
 
 .about h2 {
   font-size: 2rem;
-  color: var(--base1);
+  color: #333;
 }
 
-/* Skills Section Styles */
+.about p {
+  color: #666;
+}
+
 .skills {
   display: flex;
   flex-direction: column;
@@ -163,125 +137,52 @@ body {
 .skill label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--base1);
 }
 
 .skill progress {
   width: 100%;
-  -webkit-appearance: none; /* Style non-standard properties */
+  -webkit-appearance: none;
   appearance: none;
-  color: var(--blue); /* For Firefox */
 }
 
+/* Fixing the selectors for progress bars */
 .skill progress::-webkit-progress-bar {
-  background-color: var(--base02);
+  background-color: #ddd;
 }
 
 .skill progress::-webkit-progress-value {
-  background-color: var(--cyan);
+  background-color: #e62429;
 }
 
 .skill progress::-moz-progress-bar {
-  background-color: var(--cyan);
+  background-color: #e62429;
 }
 
-/* GitHub Repos Section Styles */
+/* Making the skill bars stack on smaller screens */
+@media (max-width: 768px) {
+  .skills {
+    flex-direction: column;
+  }
+}
+
 #github-repos .repo {
-  border: 1px solid var(--base02);
+  border: 1px solid #ddd;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: var(--base02);
 }
 
 #github-repos .repo h2 {
   margin: 0;
   font-size: 1.2rem;
-  color: var(--base1);
 }
 
 #github-repos .repo p {
   font-size: 0.9rem;
-  color: var(--base0);
 }
 
 #github-repos .repo span {
   display: inline-block;
   margin-right: 10px;
   font-size: 0.8rem;
-  color: var(--base01);
-}
-
-.repo {
-  /* Update the background color if needed */
-  background-color: var(
-    --base02
-  ); /* Slightly lighter than the page background for depth */
-}
-
-/* Style for unvisited links */
-a:link {
-  color: var(--link-color);
-  text-decoration: none; /* Optional: removes underline from links */
-}
-
-/* Style for visited links */
-a:visited {
-  color: var(--visited-link-color);
-}
-
-/* Style for links when hovered */
-a:hover {
-  color: var(--link-color);
-  text-decoration: underline; /* Optional: underlines link on hover */
-}
-
-/* Style for links when active (being clicked) */
-a:active {
-  color: var(--link-color);
-}
-
-/* Apply this class to elements that are specifically styled as links but are not 'a' tags */
-.link-like {
-  color: var(--link-color);
-  cursor: pointer; /* Gives a hint that this is a clickable link */
-}
-
-/* When these elements are clicked, make the color slightly darker to indicate activity */
-.link-like:active {
-  color: darken(var(--link-color), 10%);
-}
-
-/* You can add a function to darken the color if you want to indicate activity */
-/* This is a simple example using CSS custom properties and calc() */
-:root {
-  --link-darken-percentage: 10%;
-  --link-active-color: calc(var(--link-color) - var(--link-darken-percentage));
-}
-
-.link-like:active {
-  color: var(--link-active-color);
-}
-
-/* Responsive Media Queries */
-@media (max-width: 768px) {
-  .App-nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .App-nav ul li {
-    margin-bottom: 0.5rem;
-  }
-
-  .intro h1 {
-    font-size: 2rem;
-  }
-
-  .btn {
-    padding: 0.8rem 1.5rem;
-  }
-
-  .skills {
-    flex-direction: column;
-  }
+  color: #555;
 }
