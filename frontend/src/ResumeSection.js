@@ -2,8 +2,10 @@
 function ResumeSection() {
   return (
     <>
-    <section className="intro">
-        <h1>Hi, I'm <span className="name">Sam Roy</span></h1>
+      <section className="intro">
+        <h1>
+          Hi, I'm <span className="name">Sam Roy</span>
+        </h1>
         <p className="title">Head of Technology</p>
         <div className="buttons">
           <button className="btn">Download Resume</button>
