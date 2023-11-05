@@ -1,5 +1,5 @@
 .App {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
@@ -18,7 +18,7 @@
 
 .App-nav ul {
   list-style: none;
-  background-color:rgba(36, 36, 188, 0.563);
+  background-color: rgba(36, 36, 188, 0.563);
   padding: 0;
   display: flex;
   margin: 0;
@@ -186,4 +186,3 @@
   font-size: 0.8rem;
   color: #555;
 }
-
