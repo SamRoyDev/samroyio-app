@@ -3,6 +3,7 @@
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 10px; /* Add padding for smaller screens */
 }
 
 .App-header {
@@ -12,19 +13,34 @@
   justify-content: space-between;
   padding: 1rem;
   align-items: center;
+  flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
 }
 
 .App-nav ul {
   list-style: none;
+  background-color:rgba(36, 36, 188, 0.563);
   padding: 0;
   display: flex;
   margin: 0;
+  flex-wrap: wrap; /* Allow nav items to wrap on smaller screens */
 }
 
 .App-nav ul li {
   margin-right: 1rem;
   color: #fff;
   cursor: pointer;
+}
+
+/* Stacking nav items vertically on smaller screens */
+@media (max-width: 768px) {
+  .App-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .App-nav ul li {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .brand {
@@ -44,6 +60,13 @@
   font-size: 2.5rem;
 }
 
+/* Adjusting heading size on smaller screens */
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2rem;
+  }
+}
+
 .intro .title {
   color: #666;
   margin-bottom: 2rem;
@@ -54,6 +77,7 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap; /* Wrap buttons on smaller screens */
 }
 
 .btn {
@@ -64,20 +88,27 @@
   transition: background-color 0.3s ease;
 }
 
+/* Adjust button size on smaller screens */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
 .btn:hover {
   opacity: 0.9;
 }
 
 .btn-primary {
-  background-color: #e62429; /* red color */
+  background-color: #e62429;
   color: white;
   border: none;
 }
 
 .btn-outline {
   background-color: transparent;
-  border: 2px solid #e62429; /* red color */
-  color: #e62429; /* red color */
+  border: 2px solid #e62429;
+  color: #e62429;
 }
 
 .about {
@@ -114,14 +145,45 @@
   appearance: none;
 }
 
-skill progress::-webkit-progress-bar {
+/* Fixing the selectors for progress bars */
+.skill progress::-webkit-progress-bar {
   background-color: #ddd;
 }
 
-skill progress::-webkit-progress-value {
+.skill progress::-webkit-progress-value {
   background-color: #e62429;
 }
 
-skill progress::-moz-progress-bar {
+.skill progress::-moz-progress-bar {
   background-color: #e62429;
 }
+
+/* Making the skill bars stack on smaller screens */
+@media (max-width: 768px) {
+  .skills {
+    flex-direction: column;
+  }
+}
+
+#github-repos .repo {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#github-repos .repo h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+#github-repos .repo p {
+  font-size: 0.9rem;
+}
+
+#github-repos .repo span {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 0.8rem;
+  color: #555;
+}
+

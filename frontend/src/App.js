@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import ResumeSection from "./ResumeSection";
+// import ResumeSection from "./ResumeSection";
+// import Navigation from "./Navigation";
+import GithubRepositories from "./GithubRepositories";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -40,25 +42,19 @@ function App() {
 
   return (
     <div className="App">
-    <header className="App-header">
-      <nav className="App-nav">
-        <div className="brand"><p>samroy.io</p></div>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Resume</li>
-          <li>Services</li>
-          <li>Portfolio</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
+      <header className="App-header">
+        <div className="brand">
+          <p>samroy.io</p>
+        </div>
+      </header>
+      {/* <Navigation /> */}
       <p>Visitors: {count || "Loading Visitor Count..."}</p>
       <p>Backend API: {message || "Loading API Response..."}</p>
-    </header>
-    <main className="App-main">
-      < ResumeSection />
-    </main>
-  </div>
+      <main className="App-main">
+        < GithubRepositories />
+        {/* <ResumeSection /> */}
+      </main>
+    </div>
   );
 }
 
