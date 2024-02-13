@@ -48,11 +48,12 @@ function App() {
         </div>
       </header>
       {/* <Navigation /> */}
-      <p>Visitors: {count || "Loading Visitor Count..."}</p>
-      <p>Backend API: {message || "Loading API Response..."}</p>
       <main className="App-main">
+        <p></p>
         <GithubRepositories />
         {/* <ResumeSection /> */}
+        <p>Visitors: {count || "Loading Visitor Count..."}</p>
+        <p>Backend API: {message || "Loading API Response..."}</p>
       </main>
     </div>
   );
