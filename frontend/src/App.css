@@ -3,17 +3,20 @@
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 10px; /* Add padding for smaller screens */
+  padding: 20px 10px; /* Slightly increased vertical padding */
 }
 
 .App-header {
-  background-color: #1c1c1e;
+  background-color: #252834;
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 20px;
   align-items: center;
-  flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px 15px 0 0; /* Rounded corners at top only */
+  margin: 20px 0 0; /* Remove side margins */
 }
 
 .App-nav ul {
@@ -168,6 +171,7 @@
 /* GitHub Repos Section Container */
 #github-repos {
   max-width: 100%;
+  padding: 10px 0px;
   overflow: hidden;
 }
 

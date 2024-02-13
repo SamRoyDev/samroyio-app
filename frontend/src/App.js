@@ -49,7 +49,7 @@ function App() {
       </header>
       {/* <Navigation /> */}
       <main className="App-main">
-        <p></p>
+        <br></br>
         <GithubRepositories />
         {/* <ResumeSection /> */}
         <p>Visitors: {count || "Loading Visitor Count..."}</p>
