@@ -12,11 +12,12 @@ function App() {
   // Effect for getting a welcome message - runs only once on mount
   useEffect(() => {
     axios
-      .get("https://backend.app.samroy.io/hello")
+      .get("https://backend.app.samroy.io/health_check")
       .then((response) => {
         setMessage(response.data);
       })
       .catch((error) => {
+        setMessage(false)
         console.error("There was an error fetching the data:", error);
       });
   }, []); // Empty dependency array means this effect runs once on component mount
