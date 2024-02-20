@@ -1,0 +1,1 @@
+export type ApiStatus = boolean | null;

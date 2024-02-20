@@ -3,11 +3,12 @@ import "./App.css";
 import axios from "axios";
 // import ResumeSection from "./ResumeSection";
 // import Navigation from "./Navigation";
-import GithubRepositories from "./GithubRepositories";
+//import GithubRepositories from "./GithubRepositories";
+import StatusOrb from "./components/StatusOrb";
 
-function App() {
-  const [message, setMessage] = useState("");
-  const [count, setCount] = useState("");
+const App: React.FC = () => {
+  const [message, setMessage] = useState<boolean | null>(null);
+  const [count, setCount] = useState<string>("");
 
   // Effect for getting a welcome message - runs only once on mount
   useEffect(() => {
@@ -41,26 +42,6 @@ function App() {
     });
   }, []); // Empty dependency array means this effect runs once on component mount
 
-  const StatusOrb = ({ status }) => {
-    const orbStyle = {
-      height: "10px",
-      width: "10px",
-      borderRadius: "50%",
-      display: "inline-block",
-      backgroundColor: "gray", // Default color
-    };
-
-    if (status === null) {
-      orbStyle.backgroundColor = "yellow"; // Loading
-    } else if (status) {
-      orbStyle.backgroundColor = "green"; // True
-    } else {
-      orbStyle.backgroundColor = "red"; // False
-    }
-
-    return <span style={orbStyle}></span>;
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -71,7 +52,7 @@ function App() {
       {/* <Navigation /> */}
       <main className="App-main">
         <br></br>
-        <GithubRepositories />
+        {/*<GithubRepositories >*/}
         {/* <ResumeSection /> */}
         <p>Visitors: {count || "Loading Visitor Count..."}</p>
         <p>
@@ -80,6 +61,6 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;
