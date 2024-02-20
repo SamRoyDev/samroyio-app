@@ -7,7 +7,8 @@ import GithubRepositories from "./components/GithubRepositories";
 import StatusOrb from "./components/StatusOrb";
 
 const App: React.FC = () => {
-  const [message, setMessage] = useState<boolean | null>(null);
+  const [health, setHealth] = useState<boolean | null>(null);
+  const [healthMesssage, setHealthMessage] = useState<string>("");
   const [count, setCount] = useState<string>("");
 
   // Effect for getting a welcome message - runs only once on mount
@@ -15,10 +16,11 @@ const App: React.FC = () => {
     axios
       .get("https://backend.app.samroy.io/health_check")
       .then((response) => {
-        setMessage(response.data);
+        setHealth(response.data.data);
+        setHealthMessage(response.data.message);
       })
       .catch((error) => {
-        setMessage(false);
+        setHealth(false);
         console.error("There was an error fetching the data:", error);
       });
   }, []); // Empty dependency array means this effect runs once on component mount
@@ -56,7 +58,10 @@ const App: React.FC = () => {
         {/* <ResumeSection /> */}
         <p>Visitors: {count || "Loading Visitor Count..."}</p>
         <p>
-          API Health Check: <StatusOrb status={message} />
+          API Health Check: <StatusOrb status={health} />
+        </p>
+        <p>
+          API Health Message: {healthMesssage || "Loading..."}
         </p>
       </main>
     </div>
