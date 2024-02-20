@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-// import ResumeSection from "./ResumeSection";
-// import Navigation from "./Navigation";
-//import GithubRepositories from "./GithubRepositories";
+import ResumeSection from "../components/ResumeSection";
+//import Navigation from "./Navigation";
+import GithubRepositories from "../components/GithubRepositories";
 import StatusOrb from "./components/StatusOrb";
 
 const App: React.FC = () => {
