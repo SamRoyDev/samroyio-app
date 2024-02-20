@@ -1,4 +1,6 @@
-function Navigation() {
+import React from "react";
+
+const Navigation: React.FC = () => {
   return (
     <>
       <nav className="App-nav">
@@ -13,6 +15,6 @@ function Navigation() {
       </nav>
     </>
   );
-}
+};
 
 export default Navigation;
