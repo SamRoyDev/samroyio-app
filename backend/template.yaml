@@ -56,18 +56,18 @@ Resources:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2018
 
-  HelloWorldFunction:
+  HealthCheckFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/hello_world/
+      CodeUri: src/get_health_check/
       Handler: app.lambda_handler
       Runtime: python3.8
       Events:
-        HelloWorldApi:
+        HealthCheck:
           Type: Api
           Properties:
             RestApiId: !Ref SamRoyIoApi
-            Path: /hello
+            Path: /health_check
             Method: get
 
   PostVisitorFunction:
