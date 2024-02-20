@@ -1,14 +1,15 @@
 import json
 
+
 def lambda_handler(event, context):
     # Return a simple `True` response if API is online
     return {
         "statusCode": 200,
         "headers": {
-            "Access-Control-Allow-Origin": "*",  # Required for CORS support to work
-            "Access-Control-Allow-Credentials": True,  # Required for cookies, authorization headers with HTTPS
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": True,
         },
         "body": json.dumps(
-            {"status": "success", "message": "API is online.", "data": {True}}
+            {"status": "success", "message": "API is online.", "data": True}
         ),
     }
