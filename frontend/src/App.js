@@ -17,7 +17,7 @@ function App() {
         setMessage(response.data);
       })
       .catch((error) => {
-        setMessage(false)
+        setMessage(false);
         console.error("There was an error fetching the data:", error);
       });
   }, []); // Empty dependency array means this effect runs once on component mount
@@ -41,6 +41,26 @@ function App() {
     });
   }, []); // Empty dependency array means this effect runs once on component mount
 
+  const StatusOrb = ({ status }) => {
+    const orbStyle = {
+      height: "10px",
+      width: "10px",
+      borderRadius: "50%",
+      display: "inline-block",
+      backgroundColor: "gray", // Default color
+    };
+
+    if (status === null) {
+      orbStyle.backgroundColor = "yellow"; // Loading
+    } else if (status) {
+      orbStyle.backgroundColor = "green"; // True
+    } else {
+      orbStyle.backgroundColor = "red"; // False
+    }
+
+    return <span style={orbStyle}></span>;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -54,7 +74,9 @@ function App() {
         <GithubRepositories />
         {/* <ResumeSection /> */}
         <p>Visitors: {count || "Loading Visitor Count..."}</p>
-        <p>Backend API: {message || "Loading API Response..."}</p>
+        <p>
+          API Health Check: <StatusOrb status={message} />
+        </p>
       </main>
     </div>
   );
