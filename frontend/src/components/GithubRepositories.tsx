@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { RepositoryProps } from "../interfaces/ComponentProps";
 
 function GithubRepositories() {
-  const [repos, setRepos] = useState([]);
+  const [repos, setRepos] = useState<RepositoryProps[]>([]);
 
   useEffect(() => {
     const username = "SamRoyDev"; // Replace with your actual GitHub username
@@ -9,30 +10,28 @@ function GithubRepositories() {
 
     fetch(apiURL)
       .then((response) => response.json())
-      .then((repos) => {
-        // Fetch the contributors for each repository to get the commit count
-        const repoPromises = repos.map(
-          (repo) =>
-            fetch(`${repo.contributors_url}`)
-              .then((response) => response.json())
-              .then((contributors) => {
-                // Calculate the total number of contributions by summing up the contributions from each contributor
-                const commitCount = contributors.reduce(
-                  (acc, contributor) => acc + contributor.contributions,
-                  0
-                );
-                return { ...repo, commit_count: commitCount };
-              })
-              .catch(() => ({ ...repo, commit_count: "N/A" })) // Handle any errors, perhaps the repo is empty or private
+      .then((repos: RepositoryProps[]) => {
+        const repoPromises = repos.map((repo) =>
+          fetch(`${repo.contributors_url}`)
+            .then((response) => response.json())
+            .then((contributors) => {
+              const commitCount = contributors.reduce(
+                (acc: number, contributor: { contributions: number }) => acc + contributor.contributions,
+                0
+              );
+              return { ...repo, commit_count: commitCount };
+            })
+            .catch(() => ({ ...repo, commit_count: "N/A" })) // Handle any errors
         );
 
-        // Wait for all the commit counts to be fetched
         Promise.all(repoPromises).then((reposWithCommitCount) => {
-          // Now we have all the repositories with commit counts
           const sortedRepos = reposWithCommitCount.sort((a, b) => {
-            return b.commit_count - a.commit_count;
+            if (typeof a.commit_count === "number" && typeof b.commit_count === "number") {
+              return b.commit_count - a.commit_count;
+            }
+            return 0;
           });
-          setRepos(sortedRepos); // Set the sorted repositories in state
+          setRepos(sortedRepos);
         });
       })
       .catch((error) => console.error("Error fetching GitHub repos:", error));
@@ -49,8 +48,6 @@ function GithubRepositories() {
               </a>
             </h2>
             <p>{repo.description}</p>
-            {/* <span>Stars: {repo.stargazers_count}</span>
-            <span>Forks: {repo.forks_count}</span> */}
             <span>
               Commits:{" "}
               {typeof repo.commit_count === "number"

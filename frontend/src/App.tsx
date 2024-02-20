@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import ResumeSection from "../components/ResumeSection";
+//import ResumeSection from "../components/ResumeSection";
 //import Navigation from "./Navigation";
-import GithubRepositories from "../components/GithubRepositories";
+import GithubRepositories from "./components/GithubRepositories";
 import StatusOrb from "./components/StatusOrb";
 
 const App: React.FC = () => {
@@ -52,7 +52,7 @@ const App: React.FC = () => {
       {/* <Navigation /> */}
       <main className="App-main">
         <br></br>
-        {/*<GithubRepositories >*/}
+        <GithubRepositories />
         {/* <ResumeSection /> */}
         <p>Visitors: {count || "Loading Visitor Count..."}</p>
         <p>
