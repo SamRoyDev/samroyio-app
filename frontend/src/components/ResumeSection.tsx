@@ -1,5 +1,7 @@
-// ResumeSection.js
-function ResumeSection() {
+// ResumeSection.tsx
+import React from "react";
+
+const ResumeSection: React.FC = () => {
   return (
     <>
       <section className="intro">
@@ -28,6 +30,6 @@ function ResumeSection() {
       </section>
     </>
   );
-}
+};
 
 export default ResumeSection;
