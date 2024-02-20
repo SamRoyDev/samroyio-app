@@ -60,9 +60,7 @@ const App: React.FC = () => {
         <p>
           API Health Check: <StatusOrb status={health} />
         </p>
-        <p>
-          API Health Message: {healthMesssage || "Loading..."}
-        </p>
+        <p>API Health Message: {healthMesssage || "Loading..."}</p>
       </main>
     </div>
   );
