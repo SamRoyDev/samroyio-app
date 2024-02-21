@@ -3,11 +3,11 @@
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 10px; /* Slightly increased vertical padding */
+  padding: 20px 10px 50px; /* Slightly increased vertical padding */
 }
 
 .App-header {
-  background-color: #252834;
+  background-color: #303845;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -147,4 +147,30 @@ html {
   .skills {
     flex-direction: column;
   }
+}
+
+.top-btn {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  padding: 10px;
+  font-size: 24px;
+  background-color: #c0c0c04c;
+  color: white;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's above other content */
+  transition: opacity 0.3s;
+}
+
+.top-btn svg {
+  fill: white; /* Change SVG color */
+  width: 30px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+}
+
+.top-btn:hover {
+  background-color: #1c5276b3;
 }
