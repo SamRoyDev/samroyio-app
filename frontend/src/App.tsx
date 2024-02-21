@@ -2,7 +2,7 @@ import React from "react";
 import "./css/App.css";
 import "./css/Navigation.css";
 import "./css/GithubRepositories.css";
-//import ResumeSection from "../components/ResumeSection";
+//import ResumeSection from "./components/ResumeSection";
 import Navigation from "./components/Navigation";
 import Api from "./components/Api";
 import GithubRepositories from "./components/GithubRepositories";
@@ -15,7 +15,7 @@ const App: React.FC = () => {
           <p>sam roy</p>
         </div>
         <div className="api">
-          <Api />
+          {/*<Api />*/}
         </div>
       </header>
       <Navigation />
