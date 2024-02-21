@@ -1,26 +1,55 @@
+/* Base Navigation Styles */
+.App-nav {
+  text-align: center; /* Center align the nav for consistency */
+}
+
 .App-nav ul {
   list-style: none;
-  background-color: rgba(36, 36, 188, 0.563);
-  padding: 0;
-  display: flex;
+  background-color: #161a328a; /* Updated to a more vibrant shade for better visibility */
+  padding: 4px;
   margin: 0;
-  flex-wrap: wrap; /* Allow nav items to wrap on smaller screens */
+  display: flex;
+  justify-content: left; /* Center the items for better alignment */
+  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
+/* Updated: Apply styles to <a> directly for full coverage */
 .App-nav ul li {
-  margin-right: 1rem;
-  color: #fff;
-  cursor: pointer;
+  margin: 0 5px; /* Adjusted margin for spacing */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interactions */
 }
 
-/* Stacking nav items vertically on smaller screens */
+.App-nav ul li a {
+  display: block; /* Ensure <a> tag fills the entire <li> */
+  padding: 10px 15px; /* Increased padding for better touch targets */
+  color: #ffffff; /* Maintain text color */
+  text-decoration: none; /* Removes underline */
+  cursor: pointer; /* Ensure pointer cursor for links */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interactions */
+  border-radius: 4px; /* Apply border-radius to <a> for consistent rounded corners */
+}
+
+.App-nav ul li a:hover,
+.App-nav ul li a:focus {
+  background-color: #c9c9c99a; /* Darker shade on hover/focus for feedback */
+  transform: translateY(-2px); /* Slight raise effect */
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .App-nav ul {
+    justify-content: center; /* Adjust alignment for smaller screens */
     flex-direction: column;
-    align-items: center;
+    padding: 10px; /* Added padding for spacing */
   }
 
   .App-nav ul li {
-    margin-bottom: 0.5rem;
+    width: 100%; /* Ensure list items fill the nav width */
+  }
+
+  .App-nav ul li a {
+    justify-content: center; /* Center align horizontally */
   }
 }

@@ -5,12 +5,9 @@ const Navigation: React.FC = () => {
     <>
       <nav className="App-nav">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Resume</li>
-          <li>Services</li>
-          <li>Portfolio</li>
-          <li>Contact</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#api">API</a></li>
         </ul>
       </nav>
     </>
