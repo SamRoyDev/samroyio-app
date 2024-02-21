@@ -4,7 +4,7 @@ import "./css/Navigation.css";
 import "./css/GithubRepositories.css";
 //import ResumeSection from "../components/ResumeSection";
 import Navigation from "./components/Navigation";
-import ApiSection from "./components/ApiSection";
+import Api from "./components/Api";
 import GithubRepositories from "./components/GithubRepositories";
 
 const App: React.FC = () => {
@@ -14,6 +14,9 @@ const App: React.FC = () => {
         <div className="brand">
           <p>sam roy</p>
         </div>
+        <div className="api">
+          <Api />
+        </div>
       </header>
       <Navigation />
       <main className="App-main">
@@ -22,7 +25,9 @@ const App: React.FC = () => {
           <GithubRepositories />
         </section>
         {/* <ResumeSection /> */}
-        <ApiSection />
+        <section id="api">
+          <Api />
+        </section>
       </main>
     </div>
   );

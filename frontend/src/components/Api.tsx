@@ -43,13 +43,11 @@ const ResumeSection: React.FC = () => {
 
   return (
     <>
-      <section id="api">
-        <p>Visitors: {count || "Loading Visitor Count..."}</p>
-        <p>
-          API Health Check: <StatusOrb status={health} />
-        </p>
-        <p>API Health Message: {healthMesssage || "Loading..."}</p>
-      </section>
+      <p>Visitors: {count || "Loading Visitor Count..."}</p>
+      <p>
+        API Health Check: <StatusOrb status={health} />
+      </p>
+      <p>API Health Message: {healthMesssage || "Loading..."}</p>
     </>
   );
 };
