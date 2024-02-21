@@ -1,0 +1,142 @@
+.App {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 10px; /* Slightly increased vertical padding */
+}
+
+.App-header {
+  background-color: #252834;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 15px 15px 0 0; /* Rounded corners at top only */
+  margin: 20px 0 0; /* Remove side margins */
+}
+
+.brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.intro {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 2rem 0;
+}
+
+.intro h1 {
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+/* Adjusting heading size on smaller screens */
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2rem;
+  }
+}
+
+.intro .title {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap; /* Wrap buttons on smaller screens */
+}
+
+.btn {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Adjust button size on smaller screens */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: #e62429;
+  color: white;
+  border: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #e62429;
+  color: #e62429;
+}
+
+.about {
+  padding: 2rem;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.about p {
+  color: #666;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.skill {
+  margin-bottom: 1rem;
+}
+
+.skill label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.skill progress {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Fixing the selectors for progress bars */
+.skill progress::-webkit-progress-bar {
+  background-color: #ddd;
+}
+
+.skill progress::-webkit-progress-value {
+  background-color: #e62429;
+}
+
+.skill progress::-moz-progress-bar {
+  background-color: #e62429;
+}
+
+/* Making the skill bars stack on smaller screens */
+@media (max-width: 768px) {
+  .skills {
+    flex-direction: column;
+  }
+}

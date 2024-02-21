@@ -1,0 +1,26 @@
+.App-nav ul {
+  list-style: none;
+  background-color: rgba(36, 36, 188, 0.563);
+  padding: 0;
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap; /* Allow nav items to wrap on smaller screens */
+}
+
+.App-nav ul li {
+  margin-right: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Stacking nav items vertically on smaller screens */
+@media (max-width: 768px) {
+  .App-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .App-nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}

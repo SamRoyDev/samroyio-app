@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./css/App.css";
+import "./css/Navigation.css"
+import "./css/GithubRepositories.css"
 import axios from "axios";
 //import ResumeSection from "../components/ResumeSection";
-//import Navigation from "./Navigation";
+import Navigation from "./components/Navigation";
 import GithubRepositories from "./components/GithubRepositories";
 import StatusOrb from "./components/StatusOrb";
 
@@ -51,7 +53,7 @@ const App: React.FC = () => {
           <p>samroy.io</p>
         </div>
       </header>
-      {/* <Navigation /> */}
+      <Navigation />
       <main className="App-main">
         <br></br>
         <GithubRepositories />
