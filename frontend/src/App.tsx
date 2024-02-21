@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/App.css";
-import "./css/Navigation.css"
-import "./css/GithubRepositories.css"
+import "./css/Navigation.css";
+import "./css/GithubRepositories.css";
 import axios from "axios";
 //import ResumeSection from "../components/ResumeSection";
 import Navigation from "./components/Navigation";
@@ -50,19 +50,25 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <div className="brand">
-          <p>samroy.io</p>
+          <p>sam roy</p>
         </div>
       </header>
-      <Navigation />
+      <div className="App-nav">
+        <Navigation />
+      </div>
       <main className="App-main">
         <br></br>
-        <GithubRepositories />
+        <section id="projects">
+          <GithubRepositories />
+        </section>
         {/* <ResumeSection /> */}
-        <p>Visitors: {count || "Loading Visitor Count..."}</p>
-        <p>
-          API Health Check: <StatusOrb status={health} />
-        </p>
-        <p>API Health Message: {healthMesssage || "Loading..."}</p>
+        <section id="api">
+          <p>Visitors: {count || "Loading Visitor Count..."}</p>
+          <p>
+            API Health Check: <StatusOrb status={health} />
+          </p>
+          <p>API Health Message: {healthMesssage || "Loading..."}</p>
+        </section>
       </main>
     </div>
   );

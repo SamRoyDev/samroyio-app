@@ -11,17 +11,17 @@
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0 30px;
   align-items: center;
   flex-wrap: wrap;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 15px 15px 0 0; /* Rounded corners at top only */
-  margin: 20px 0 0; /* Remove side margins */
+  margin: 10px 0 0; /* Remove side margins */
 }
 
 .brand {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
 }
 
@@ -89,6 +89,10 @@
 
 .about {
   padding: 2rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .about h2 {
