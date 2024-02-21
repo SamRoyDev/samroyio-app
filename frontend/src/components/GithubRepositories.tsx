@@ -11,22 +11,27 @@ function GithubRepositories() {
     fetch(apiURL)
       .then((response) => response.json())
       .then((repos: RepositoryProps[]) => {
-        const repoPromises = repos.map((repo) =>
-          fetch(`${repo.contributors_url}`)
-            .then((response) => response.json())
-            .then((contributors) => {
-              const commitCount = contributors.reduce(
-                (acc: number, contributor: { contributions: number }) => acc + contributor.contributions,
-                0
-              );
-              return { ...repo, commit_count: commitCount };
-            })
-            .catch(() => ({ ...repo, commit_count: "N/A" })) // Handle any errors
+        const repoPromises = repos.map(
+          (repo) =>
+            fetch(`${repo.contributors_url}`)
+              .then((response) => response.json())
+              .then((contributors) => {
+                const commitCount = contributors.reduce(
+                  (acc: number, contributor: { contributions: number }) =>
+                    acc + contributor.contributions,
+                  0
+                );
+                return { ...repo, commit_count: commitCount };
+              })
+              .catch(() => ({ ...repo, commit_count: "N/A" })) // Handle any errors
         );
 
         Promise.all(repoPromises).then((reposWithCommitCount) => {
           const sortedRepos = reposWithCommitCount.sort((a, b) => {
-            if (typeof a.commit_count === "number" && typeof b.commit_count === "number") {
+            if (
+              typeof a.commit_count === "number" &&
+              typeof b.commit_count === "number"
+            ) {
               return b.commit_count - a.commit_count;
             }
             return 0;
