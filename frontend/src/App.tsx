@@ -6,17 +6,17 @@ import "./css/GithubRepositories.css";
 import Navigation from "./components/Navigation";
 import Api from "./components/Api";
 import GithubRepositories from "./components/GithubRepositories";
+import TopButton from "./components/TopButton";
 
 const App: React.FC = () => {
   return (
     <div className="App">
+      <TopButton />
       <header className="App-header">
         <div className="brand">
           <p>sam roy</p>
         </div>
-        <div className="api">
-          {/*<Api />*/}
-        </div>
+        <div className="api">{/*<Api />*/}</div>
       </header>
       <Navigation />
       <main className="App-main">
