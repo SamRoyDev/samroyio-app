@@ -1,6 +1,6 @@
 // App.test.tsx
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "../App";
 
 test("make sure that samroy.io is rending", () => {
   render(<App />);
