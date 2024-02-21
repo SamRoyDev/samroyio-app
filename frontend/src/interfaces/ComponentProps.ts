@@ -9,5 +9,7 @@ export interface RepositoryProps {
   html_url: string;
   description?: string;
   contributors_url: string;
-  commit_count?: number | string; // Adding commit count as an optional property
+  commit_count?: number | string;
+  languages?: string;
+  languages_url?: string;
 }

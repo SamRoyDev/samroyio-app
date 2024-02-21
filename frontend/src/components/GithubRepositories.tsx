@@ -5,37 +5,53 @@ function GithubRepositories() {
   const [repos, setRepos] = useState<RepositoryProps[]>([]);
 
   useEffect(() => {
-    const username = "SamRoyDev"; // Replace with your actual GitHub username
+    const username = "SamRoyDev";
     const apiURL = `https://api.github.com/users/${username}/repos`;
 
     fetch(apiURL)
       .then((response) => response.json())
-      .then((repos: RepositoryProps[]) => {
-        const repoPromises = repos.map(
-          (repo) =>
-            fetch(`${repo.contributors_url}`)
-              .then((response) => response.json())
-              .then((contributors) => {
-                const commitCount = contributors.reduce(
-                  (acc: number, contributor: { contributions: number }) =>
-                    acc + contributor.contributions,
-                  0
-                );
-                return { ...repo, commit_count: commitCount };
-              })
-              .catch(() => ({ ...repo, commit_count: "N/A" })) // Handle any errors
-        );
+      .then((repos) => {
+        const repoPromises = repos.map((repo: RepositoryProps) => {
+          // Fetch for commit counts
+          // Fetch for commit counts
+          const commitsPromise = fetch(repo.contributors_url)
+            .then((response) => response.json())
+            .then((contributors) =>
+              contributors.reduce(
+                (acc: number, contributor: { contributions: number }) =>
+                  acc + contributor.contributions,
+                0
+              )
+            )
+            .catch(() => "N/A");
 
-        Promise.all(repoPromises).then((reposWithCommitCount) => {
-          const sortedRepos = reposWithCommitCount.sort((a, b) => {
-            if (
-              typeof a.commit_count === "number" &&
-              typeof b.commit_count === "number"
-            ) {
-              return b.commit_count - a.commit_count;
-            }
-            return 0;
+          // Fetch for languages
+          const languagesPromise = fetch(repo.languages_url!)
+            .then((response) => response.json())
+            .then((languages) => Object.keys(languages).join(", "))
+            .catch(() => "N/A");
+
+          // Combine both promises
+          return Promise.all([commitsPromise, languagesPromise]).then(
+            ([commitCount, languages]) => ({
+              ...repo,
+              commit_count: commitCount,
+              languages: languages || "None", // Handle the case where no languages are returned
+            })
+          );
+        });
+
+        Promise.all(repoPromises).then((reposWithDetails) => {
+          // Sort repositories by commit count (highest first)
+          const sortedRepos = reposWithDetails.sort((a, b) => {
+            // Handle "N/A" commit counts by putting them at the end
+            if (a.commit_count === "N/A") return 1;
+            if (b.commit_count === "N/A") return -1;
+
+            // Compare numerical commit counts
+            return b.commit_count - a.commit_count;
           });
+
           setRepos(sortedRepos);
         });
       })
@@ -46,20 +62,22 @@ function GithubRepositories() {
     <>
       <section id="github-repos">
         {repos.map((repo) => (
-          <div className="repo" key={repo.id}>
-            <h2>
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-                {repo.name}
-              </a>
-            </h2>
-            <p>{repo.description}</p>
-            <span>
-              Commits:{" "}
-              {typeof repo.commit_count === "number"
-                ? repo.commit_count
-                : "Private or Empty Repository"}
-            </span>
-          </div>
+          <a
+            href={repo.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="repo-link"
+            key={repo.id}
+          >
+            <div className="repo">
+              <h2>{repo.name}</h2>
+              <p>{repo.description}</p>
+              <div>
+                <span>Commits: {repo.commit_count}</span>{" "}
+                <span>Languages: {repo.languages}</span>
+              </div>
+            </div>
+          </a>
         ))}
       </section>
     </>
