@@ -10,6 +10,9 @@ const Navigation: React.FC = () => {
               <a href="/">Home</a>
             </li>
             <li>
+              <a href="#documentation">Docs</a>
+            </li>
+            <li>
               <a href="#projects">Projects</a>
             </li>
             <li>
