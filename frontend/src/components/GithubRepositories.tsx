@@ -3,19 +3,39 @@ import { RepositoryProps } from "../interfaces/ComponentProps";
 
 function GithubRepositories() {
   const [repos, setRepos] = useState<RepositoryProps[]>([]);
+  const [error, setError] = useState(""); // State to hold error messages
+
+  const fetchOptions = {
+    headers: {
+      "User-Agent": "AppSamRoyIo/1.0",
+      Accept: "application/json",
+    },
+  };
 
   useEffect(() => {
     const username = "SamRoyDev";
     const apiURL = `https://api.github.com/users/${username}/repos`;
 
-    fetch(apiURL)
-      .then((response) => response.json())
+    fetch(apiURL, fetchOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `HTTP error! status: ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      })
       .then((repos) => {
         const repoPromises = repos.map((repo: RepositoryProps) => {
-          // Fetch for commit counts
-          // Fetch for commit counts
-          const commitsPromise = fetch(repo.contributors_url)
-            .then((response) => response.json())
+          const commitsPromise = fetch(repo.contributors_url, fetchOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  `HTTP error! status: ${response.status} ${response.statusText}`
+                );
+              }
+              return response.json();
+            })
             .then((contributors) =>
               contributors.reduce(
                 (acc: number, contributor: { contributions: number }) =>
@@ -23,40 +43,58 @@ function GithubRepositories() {
                 0
               )
             )
-            .catch(() => "N/A");
+            .catch((error) => {
+              console.error("Error fetching commit counts:", error);
+              return "Error"; // Return a placeholder or specific error message
+            });
 
-          // Fetch for languages
-          const languagesPromise = fetch(repo.languages_url!)
-            .then((response) => response.json())
+          const languagesPromise = fetch(repo.languages_url!, fetchOptions)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  `HTTP error! status: ${response.status} ${response.statusText}`
+                );
+              }
+              return response.json();
+            })
             .then((languages) => Object.keys(languages).join(", "))
-            .catch(() => "N/A");
+            .catch((error) => {
+              console.error("Error fetching languages:", error);
+              return "Error"; // Return a placeholder or specific error message
+            });
 
-          // Combine both promises
           return Promise.all([commitsPromise, languagesPromise]).then(
             ([commitCount, languages]) => ({
               ...repo,
               commit_count: commitCount,
-              languages: languages || "None", // Handle the case where no languages are returned
+              languages: languages || "None",
             })
           );
         });
 
-        Promise.all(repoPromises).then((reposWithDetails) => {
-          // Sort repositories by commit count (highest first)
-          const sortedRepos = reposWithDetails.sort((a, b) => {
-            // Handle "N/A" commit counts by putting them at the end
-            if (a.commit_count === "N/A") return 1;
-            if (b.commit_count === "N/A") return -1;
-
-            // Compare numerical commit counts
-            return b.commit_count - a.commit_count;
+        Promise.all(repoPromises)
+          .then((reposWithDetails) => {
+            const sortedRepos = reposWithDetails.sort((a, b) => {
+              if (a.commit_count === "Error") return 1;
+              if (b.commit_count === "Error") return -1;
+              return b.commit_count - a.commit_count;
+            });
+            setRepos(sortedRepos);
+          })
+          .catch((error) => {
+            console.error("Error processing repositories:", error);
+            setError("Failed to load repository details.");
           });
-
-          setRepos(sortedRepos);
-        });
       })
-      .catch((error) => console.error("Error fetching GitHub repos:", error));
-  }, []);
+      .catch((error) => {
+        console.error("Error fetching GitHub repos:", error);
+        setError(error.message);
+      });
+  });
+
+  if (error) {
+    return <div>Error: {error}</div>; // Render error message if an error occurred
+  }
 
   return (
     <>
