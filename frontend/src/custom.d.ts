@@ -6,3 +6,8 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare module 'remark-gfm' {
+  const remarkGfm: any;
+  export default remarkGfm;
+}
