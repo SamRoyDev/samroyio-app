@@ -1,0 +1,62 @@
+.api-dashboard {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dashboard-item {
+  background-color: #fff;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-item:not(:last-child) {
+  margin-right: 20px; /* Adds space between items if they are not the last one */
+}
+
+.dashboard-item h3 {
+  margin: 0 10px 0 0; /* Right margin */
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold; /* Bolder than normal text for emphasis */
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-indicator span {
+  color: #4caf50; /* Color for healthy status */
+}
+
+.dashboard-value {
+  color: #333;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .api-dashboard {
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start on smaller screens */
+  }
+
+  .dashboard-item {
+    width: 100%; /* Full width on smaller screens */
+    margin-right: 0; /* Remove the right margin on smaller screens */
+    justify-content: space-between; /* Spread the content across the width */
+  }
+
+  .status-indicator {
+    margin-top: 10px; /* Provide space above the status indicator */
+  }
+}

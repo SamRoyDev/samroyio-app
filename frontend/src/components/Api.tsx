@@ -42,13 +42,24 @@ const ResumeSection: React.FC = () => {
   }, []); // Empty dependency array means this effect runs once on component mount
 
   return (
-    <>
-      <p>Visitors: {count || "Loading Visitor Count..."}</p>
-      <p>
-        API Health Check: <StatusOrb status={health} />
-      </p>
-      <p>API Health Message: {healthMesssage || "Loading..."}</p>
-    </>
+    <div className="api-dashboard">
+      <div className="dashboard-item">
+        <span className="dashboard-label">Visitors: </span>
+        <span className="dashboard-value">{count || "Loading..."}</span>
+      </div>
+      <div className="dashboard-item">
+        <StatusOrb status={health} />
+        <span className="dashboard-value">
+          {health ? " Healthy" : " Issues Detected"}
+        </span>
+      </div>
+      <div className="dashboard-item">
+        <span className="dashboard-label">API Health Message: </span>
+        <span className="dashboard-value">
+          {healthMesssage || "Loading..."}
+        </span>
+      </div>
+    </div>
   );
 };
 
