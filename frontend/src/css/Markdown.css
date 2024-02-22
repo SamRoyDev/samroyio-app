@@ -1,0 +1,108 @@
+.markdown-body {
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+}
+
+.markdown-body h1 {
+  color: #303845;
+  font-size: 2em; /* Example size, adjust as needed */
+}
+
+.markdown-body h2{
+    color: #303845;
+    font-size: 1.5em;}
+
+.markdown-body h3 {
+  color: #1c5276b3;
+  font-size: 1.0em; /* Slightly smaller than h1 */
+}
+
+.markdown-body h4 {
+  font-size: .75em; /* Smaller than h2 and h3 */
+  color: #1c5276; /* Adjusted for consistency */
+}
+
+.markdown-body h5 {
+  font-size: .5em; /* Smaller than h4 */
+  color: #1c5276; /* Adjusted for consistency */
+}
+
+.markdown-body h6 {
+  font-size: .25em; /* Smallest of the headings */
+  color: #1c5276; /* Adjusted for consistency */
+}
+
+.markdown-body a {
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body p {
+  margin-bottom: 10px;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px; /* Soften image edges */
+}
+
+.markdown-body code {
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.markdown-body pre {
+  background-color: #002b36; /* Consistent with code blocks */
+  color: #e3e3e3;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid #586e75; /* Muted border color */
+  background-color: #073642; /* Dark background */
+  padding: 0 15px;
+  color: #93a1a1; /* Lighter text for contrast */
+  margin: 20px 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.markdown-body table,
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #586e75; /* Soft border color */
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-body hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    #002b36,
+    #586e75,
+    #002b36
+  ); /* Subtle gradient */
+  margin: 20px 0;
+}
