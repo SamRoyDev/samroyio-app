@@ -19,10 +19,6 @@
   margin: 10px 0 0; /* Top margin for header */
 }
 
-.api {
-  text-align: right; /* Right-aligns text inside the .api div */
-}
-
 .brand {
   font-weight: bold;
   font-size: 2.5rem;
@@ -45,6 +41,32 @@
   .intro h1 {
     font-size: 2rem;
   }
+
+  .App {
+    flex-direction: column;
+    text-align: center; /* Center align text for smaller screens */
+  }
+  .btn {
+    padding: 0.8rem 1.5rem;
+  }
+  .brand {
+    width: 100%;
+    font-weight: bold;
+    font-size: 2.5rem;
+    cursor: pointer;
+    flex: auto;
+  }
+  .App-header {
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    text-align: center; /* Reset text alignment for wider screens */
+    padding: 15px; /* Sufficient padding around the header */
+  }
+  .skills {
+    flex-direction: column;
+  }
 }
 
 .intro .title {
@@ -66,13 +88,6 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-/* Adjust button size on smaller screens */
-@media (max-width: 768px) {
-  .btn {
-    padding: 0.8rem 1.5rem;
-  }
 }
 
 .btn:hover {
@@ -140,13 +155,6 @@ html {
 
 .skill progress::-moz-progress-bar {
   background-color: #e62429;
-}
-
-/* Making the skill bars stack on smaller screens */
-@media (max-width: 768px) {
-  .skills {
-    flex-direction: column;
-  }
 }
 
 .top-btn {

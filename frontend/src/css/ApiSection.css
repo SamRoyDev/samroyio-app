@@ -10,7 +10,6 @@
   padding: 10px 15px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -47,16 +46,22 @@
 @media (max-width: 768px) {
   .api-dashboard {
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start on smaller screens */
   }
 
   .dashboard-item {
-    width: 100%; /* Full width on smaller screens */
-    margin-right: 0; /* Remove the right margin on smaller screens */
-    justify-content: space-between; /* Spread the content across the width */
+    width: 50%;
+    padding: 10px;
+    margin: 5px;
+    margin-right: 0;
+    justify-content: center;
   }
 
-  .status-indicator {
-    margin-top: 10px; /* Provide space above the status indicator */
+  .dashboard-item h3 {
+    font-weight: bold; /* Bolder than normal text for emphasis */
+  }
+
+  .dashboard-item:not(:last-child) {
+    margin-right: 0; /* Adds space between items if they are not the last one */
+    justify-content: center;
   }
 }
